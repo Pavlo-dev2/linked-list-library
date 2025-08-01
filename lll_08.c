@@ -119,10 +119,10 @@ int pop(int pos, ile **pstrt)
 		act = next;
 		next = (*next).next;
 	}
-	printf("Masseg: 0;\n");
+	//printf("Masseg: 0;\n");
 	//if (i-1 != pos || (pos < 0 && pos != -1)) { return 1; }
 	if ((i-1 != pos && pos != -1)|| (pos < 0 && pos != -1)) { return 1; }
-	printf("Masseg: 1;\n");
+	//printf("Masseg: 1;\n");
 	if (pos == -1)
 	{
 		//printf("In condithion;\n");
