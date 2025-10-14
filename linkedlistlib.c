@@ -107,7 +107,7 @@ listelement* append(void *value, long length, char type, listelement *pn, long p
 	//if you need to create a new list
 	if (pn == NULL)
 	{
-		if (pos != 0)
+		if (pos != 0 && pos != -1)
 		{
 			return NULL;
 		}
