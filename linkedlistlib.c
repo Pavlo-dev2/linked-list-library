@@ -10,14 +10,32 @@ typedef struct listelement
 	struct listelement *next;
 } listelement;
 
-listelement* append(void *value, long length, char type, listelement *pn, long pos);//add element(array) to possion pos, -1 for add to the end, NULL if list is new
-listelement* pop(listelement *pn, long pos);//delate element on possion pos, -1 for delate the last element, NULL if list is new
-int printlist(listelement* pn, char btw[], char after[]);//prints all of arrays in the list with string btw bitwin elements and after bitwin arrays
-int copyarr(void *to, void *from, char type, long length);//copy arrays
-long len(listelement *pn);//returns  length of the list
-int rmlist(listelement *pn);//free all of memory the list is using
-listelement* retel(listelement *st, long pos);//returns element on possion pos
-int printel(listelement* pn, char btw[]);//prints all of arrays in the single elemnt with string btw bitwin elements and after bitwin arrays
+listelement* append(void *value, long length, char type, listelement *pn, long pos);
+//add element(array) to possion pos, -1 for add to the end, NULL if list is new
+
+listelement* pop(listelement *pn, long pos);
+//delate element on possion pos, -1 for delate the last element, NULL if list is new
+
+int printlist(listelement* pn, char btw[], char after[]);
+//prints all of arrays in the list with string btw bitwin elements and after bitwin arrays
+
+int copyarr(void *to, void *from, char type, long length);
+//copy arrays
+
+long len(listelement *pn);
+//returns  length of the list
+
+int rmlist(listelement *pn);
+//free all of memory the list is using
+
+listelement* retel(listelement *st, long pos);
+//returns element on possion pos
+
+int printel(listelement* pn, char btw[]);
+//prints all of arrays in the single elemnt with string btw bitwin elements and after bitwin arrays
+
+int ifinlist(listelement* list, void *el, char type, long length);
+//check if element el is in list
 
 int printlist(listelement* pn, char btw[], char after[])
 {
@@ -311,6 +329,43 @@ int printel(listelement* pn, char btw[])
 				i++;
 			}
 			break;
+	}
+	return 0;
+}
+
+int ifinlist(listelement* list, void *vel, char type, long length)
+{
+	listelement *ac = list;//actual element
+	//if (el == NULL) return -1;
+
+	for (listelement *ac = list; ac != NULL; ac = ac->next)
+	{
+		//printf("ac len: %ld\nel len: %ld\nac type: %c\nel type: %c\n", ac->length, length, ac->type, type);
+		if (ac->length == length && ac->type == type)
+		{
+			//printf("Masseg 1\n");
+			for (int i = 0; i < length; i++)
+			{
+				int cond = 0;
+				switch (type)
+				{
+					case 'f':
+						cond = ((float*)vel)[i] == ((float*)ac->el)[i];
+						break;
+					case 'c':
+						cond = ((char*)vel)[i] == ((char*)ac->el)[i];
+						break;
+					case 'i':
+						cond = ((int*)vel)[i] == ((int*)ac->el)[i];
+						break;
+				}
+				if (!cond)
+				{
+					return 0;
+				}
+			}
+			return 1;
+		}
 	}
 	return 0;
 }
